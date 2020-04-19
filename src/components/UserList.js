@@ -1,16 +1,16 @@
 import React from "react"
+import UserItem from "./UserItem"
 
-class UserList extends React.Component {
-  render() {
-    console.log(this.props.users)
-    return (
-      <div>
-        {this.props.users.map((user) => (
-          <li key={user.id}>{user.login}</li>
-        ))}
-      </div>
-    )
-  }
+const UserList = ({ users }) => {
+  console.log(users)
+
+  const renderedList = users.map((user) => <UserItem key={user.id} user={user} />)
+
+  return (
+    <div className="ui container">
+      <div className="ui list">{renderedList}</div>
+    </div>
+  )
 }
 
 export default UserList
