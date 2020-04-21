@@ -1,3 +1,5 @@
 .user-item.item img {
   width: 50px;
+  /* display: flex;
+  justify-content: space-between !important; */
 }
