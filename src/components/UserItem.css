@@ -1,5 +1,16 @@
-.user-item.item img {
+.user-item {
+  display: flex;
+}
+
+.user-item img {
   width: 50px;
-  /* display: flex;
-  justify-content: space-between !important; */
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto 20px;
+  width: 100%;
+  /* border: 1px solid red; */
 }
