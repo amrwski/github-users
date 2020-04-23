@@ -12,5 +12,17 @@
   justify-content: space-between;
   margin: auto 20px;
   width: 100%;
+}
+
+.ui.container {
+  padding: 3vh 25vw;
+}
+
+.ui.segment {
+  min-width: 280px;
   /* border: 1px solid red; */
+}
+
+a {
+  color: inherit;
 }
