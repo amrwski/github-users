@@ -9,7 +9,7 @@ const UserItem = ({ user }) => {
         <div className="content">
           <a className="header">{user.login}</a>
           <button className="ui basic button">
-            <NavLink to="/user-detail">Detail</NavLink>
+            <NavLink to={`/user/${user.id}`}>Detail</NavLink>
           </button>
         </div>
       </div>

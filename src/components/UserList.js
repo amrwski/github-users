@@ -3,8 +3,6 @@ import UserItem from "./UserItem"
 import "./UserList.css"
 
 const UserList = ({ users }) => {
-  console.log(users)
-
   const renderedList = users.map((user) => <UserItem key={user.id} user={user} />)
 
   return (

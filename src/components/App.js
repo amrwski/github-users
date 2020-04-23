@@ -5,7 +5,7 @@ import UserDetail from "./UserDetail"
 import gh from "../api/gh"
 
 class App extends React.Component {
-  state = { users: [], currentUser: null }
+  state = { users: [] }
 
   componentDidMount = async () => {
     const response = await gh.get("/users", {
@@ -17,10 +17,12 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Route exact path="/" render={(props) => <UserList {...props} users={this.state.users} />} />
-          <Route path="/user-detail" component={UserDetail} />
-        </div>
+        <Route exact path="/" render={(props) => <UserList {...props} users={this.state.users} />} />
+        <Route
+          exact
+          path="/user/:userId"
+          render={(props) => <UserDetail {...props} users={this.state.users} />}
+        />
       </BrowserRouter>
     )
   }
