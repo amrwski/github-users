@@ -1,5 +1,6 @@
 import React from "react"
 import UserItem from "./UserItem"
+import "./UserList.css"
 
 const UserList = ({ users }) => {
   console.log(users)

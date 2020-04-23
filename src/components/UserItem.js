@@ -1,6 +1,5 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import "./UserItem.css"
 
 const UserItem = ({ user }) => {
   return (
@@ -10,7 +9,7 @@ const UserItem = ({ user }) => {
         <div className="content">
           <a className="header">{user.login}</a>
           <button className="ui basic button">
-            <NavLink to="/detail">Detail</NavLink>
+            <NavLink to="/user-detail">Detail</NavLink>
           </button>
         </div>
       </div>

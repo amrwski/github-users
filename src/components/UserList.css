@@ -23,6 +23,10 @@
   /* border: 1px solid red; */
 }
 
-a {
+.ui.basic.button a {
   color: inherit;
+}
+
+.ui.basic.button a:hover {
+  color: #000000;
 }
