@@ -4,8 +4,6 @@ import { get as _get } from "lodash"
 import "./UserDetail.css"
 
 const UserDetail = ({ users, match }) => {
-  // console.log(users)
-
   const {
     params: { userId },
   } = match

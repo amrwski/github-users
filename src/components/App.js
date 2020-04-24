@@ -2,22 +2,39 @@ import React from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import UserList from "./UserList"
 import UserDetail from "./UserDetail"
+
 import gh from "../api/gh"
 
 class App extends React.Component {
-  state = { users: [] }
+  state = { users: [], link: "", since: 0 }
 
   componentDidMount = async () => {
     const response = await gh.get("/users", {
-      params: { since: 1 },
+      params: { since: this.state.since },
     })
-    this.setState({ users: response.data })
+    this.setState({ users: response.data, link: response.headers.link })
+  }
+
+  onPageChange = (pgNum) => {
+    this.setState({ since: pgNum })
   }
 
   render() {
+    console.log("from app:", this.state.since)
     return (
       <BrowserRouter>
-        <Route exact path="/" render={(props) => <UserList {...props} users={this.state.users} />} />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <UserList
+              {...props}
+              users={this.state.users}
+              link={this.state.link}
+              onPageChange={this.onPageChange}
+            />
+          )}
+        />
         <Route
           exact
           path="/user/:userId"

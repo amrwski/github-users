@@ -18,5 +18,3 @@ const UserItem = ({ user }) => {
 }
 
 export default UserItem
-
-// import NavLink from "react-router-dom"
