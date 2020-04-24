@@ -30,3 +30,7 @@
 .ui.basic.button a:hover {
   color: #000000;
 }
+
+.header {
+  font-weight: 750;
+}
