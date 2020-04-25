@@ -8,19 +8,25 @@ import gh from "../api/gh"
 class App extends React.Component {
   state = { users: [], link: "", since: 0 }
 
-  componentDidMount = async () => {
-    const response = await gh.get("/users", {
-      params: { since: this.state.since },
-    })
-    this.setState({ users: response.data, link: response.headers.link })
+  componentDidMount = () => {
+    this.loadUsers()
   }
 
-  onPageChange = (pgNum) => {
-    this.setState({ since: pgNum })
+  loadUsers = async () => {
+    const response = await gh.get("/users", {
+      params: { per_page: 10, since: this.state.since },
+    })
+    this.setState({ users: response.data, link: response.headers.link })
+    console.log(response.headers)
+  }
+
+  onPageChange = (sinceNum) => {
+    this.setState({ since: sinceNum })
+    this.loadUsers()
+    console.log("loaded new page", this.state.since)
   }
 
   render() {
-    console.log("from app:", this.state.since)
     return (
       <BrowserRouter>
         <Route
@@ -47,6 +53,4 @@ class App extends React.Component {
 
 export default App
 
-// React Router is enabled by wrapping the whole App with <BrowserRouter>
-
-// passing props to child using <Route> is done by passing a function through render props. Instead of using Routes component prop, use its render prop passing it an inline function, then pass along the arguments to the element you’re creating.
+// passing props to child using <Route> is done by passing a function through render props. Instead of using Routes `component` prop, use its `render` prop passing it as inline function

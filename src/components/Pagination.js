@@ -1,22 +1,21 @@
 import React from "react"
 
 const Pagination = ({ link, onPageChange }) => {
-  // console.log(link)
+  // extracting `since` number from the link header
   const links = link.split(",")
-  const urls = links.map((link) => {
+  const sinceNums = links.map((link) => {
     return {
-      url: link.split(";")[0].replace(">", "").replace("<", ""),
-      title: link.split(";")[1],
+      sinceNum: link.split(";")[0].replace(">", "").replace("<", "").split("since=")[1],
+      btnDesc: link.split(";")[1],
     }
   })
-  const next = urls[0].url.split("=")[1]
-  // const prev = urls[1].url.includes("since=") ? urls[1].url.split("=")[1] : ""
-  console.log(next)
-  // console.log(prev)
+  const next = sinceNums[0].sinceNum
+
+  console.log(sinceNums)
 
   return (
     <div className="pagination">
-      <button>Prev</button>
+      <button onClick={() => onPageChange(0)}>First</button>
       <button onClick={() => onPageChange(next)}>Next</button>
     </div>
   )
