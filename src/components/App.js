@@ -2,11 +2,10 @@ import React from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import UserList from "./UserList"
 import UserDetail from "./UserDetail"
-
 import gh from "../api/gh"
 
 class App extends React.Component {
-  state = { users: [], link: "", since: 0 }
+  state = { users: [], resultsPerPg: 10 }
 
   componentDidMount = () => {
     this.loadUsers()
@@ -14,16 +13,15 @@ class App extends React.Component {
 
   loadUsers = async () => {
     const response = await gh.get("/users", {
-      params: { per_page: 10, since: this.state.since },
+      params: { per_page: this.state.resultsPerPg },
     })
     this.setState({ users: response.data, link: response.headers.link })
-    console.log(response.headers)
   }
 
-  onPageChange = (sinceNum) => {
-    this.setState({ since: sinceNum })
+  onPageChange = () => {
+    this.setState({ resultsPerPg: this.state.resultsPerPg + 10 })
     this.loadUsers()
-    console.log("loaded new page", this.state.since)
+    console.log("loaded new page", this.state.resultsPerPg)
   }
 
   render() {
@@ -33,12 +31,7 @@ class App extends React.Component {
           exact
           path="/"
           render={(props) => (
-            <UserList
-              {...props}
-              users={this.state.users}
-              link={this.state.link}
-              onPageChange={this.onPageChange}
-            />
+            <UserList {...props} users={this.state.users} onPageChange={this.onPageChange} />
           )}
         />
         <Route
