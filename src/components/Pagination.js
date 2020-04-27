@@ -1,6 +1,6 @@
 import React from "react"
 
-const Pagination = ({ onPageChange }) => {
+const Pagination = ({ onPageChange, isLoading }) => {
   // extracting `since` number from the link header
   /* const links = link.split(",")
   const sinceNums = links.map((link) => {
@@ -13,9 +13,13 @@ const Pagination = ({ onPageChange }) => {
 
   return (
     <div className="pagination">
-      <button className="ui inverted primary button" onClick={() => onPageChange()}>
-        Load more users...
-      </button>
+      {isLoading ? (
+        <button className="ui primary loading button">Load more users...</button>
+      ) : (
+        <button className="ui blue button" onClick={() => onPageChange()}>
+          Load more users...
+        </button>
+      )}
     </div>
   )
 }

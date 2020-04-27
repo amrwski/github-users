@@ -33,14 +33,21 @@ class App extends React.Component {
 
     return (
       <>
-        {isLoading ? (
+        {users.length === 0 ? (
           <Spinner />
         ) : (
           <BrowserRouter>
             <Route
               exact
               path="/"
-              render={(props) => <UserList {...props} users={users} onPageChange={this.onPageChange} />}
+              render={(props) => (
+                <UserList
+                  {...props}
+                  users={users}
+                  onPageChange={this.onPageChange}
+                  isLoading={isLoading}
+                />
+              )}
             />
             <Route
               exact
