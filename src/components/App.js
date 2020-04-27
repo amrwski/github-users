@@ -18,14 +18,12 @@ class App extends React.Component {
         params: { per_page: this.state.resultsPerPg },
       })
       this.setState({ users: response.data, isLoading: false })
-      console.log(response)
     })
   }
 
   onPageChange = () => {
     this.setState({ resultsPerPg: this.state.resultsPerPg + 10 })
     this.loadUsers()
-    console.log("loaded new page", this.state.resultsPerPg)
   }
 
   render() {
@@ -39,7 +37,7 @@ class App extends React.Component {
           <BrowserRouter>
             <Route
               exact
-              path="/"
+              path="/users"
               render={(props) => (
                 <UserList
                   {...props}
@@ -51,7 +49,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/user/:userId"
+              path="/users/:userId"
               render={(props) => <UserDetail {...props} users={users} />}
             />
           </BrowserRouter>

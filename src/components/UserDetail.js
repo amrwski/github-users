@@ -32,7 +32,7 @@ const UserDetail = ({ users, match }) => {
             </a>
           </div>
         </div>
-        <NavLink to="/">
+        <NavLink to="/users">
           <button className="ui basic button">Back </button>
         </NavLink>
       </div>

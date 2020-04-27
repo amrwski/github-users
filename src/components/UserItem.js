@@ -8,7 +8,7 @@ const UserItem = ({ user }) => {
         <img className="ui image" src={user.avatar_url} alt="user avatar" />
         <div className="content">
           <div className="header">{user.login}</div>
-          <NavLink to={`/user/${user.id}`}>
+          <NavLink to={`/users/${user.id}`}>
             <button className="ui basic button">Details</button>
           </NavLink>
         </div>
