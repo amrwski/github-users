@@ -2,20 +2,24 @@ import React from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import UserList from "./UserList"
 import UserDetail from "./UserDetail"
+import Spinner from "./Spinner"
 import gh from "../api/gh"
 
 class App extends React.Component {
-  state = { users: [], resultsPerPg: 10 }
+  state = { users: [], resultsPerPg: 10, isLoading: false }
 
   componentDidMount = () => {
     this.loadUsers()
   }
 
-  loadUsers = async () => {
-    const response = await gh.get("/users", {
-      params: { per_page: this.state.resultsPerPg },
+  loadUsers = () => {
+    this.setState({ isLoading: true }, async () => {
+      const response = await gh.get("/users", {
+        params: { per_page: this.state.resultsPerPg },
+      })
+      this.setState({ users: response.data, isLoading: false })
+      console.log(response)
     })
-    this.setState({ users: response.data, link: response.headers.link })
   }
 
   onPageChange = () => {
@@ -25,21 +29,27 @@ class App extends React.Component {
   }
 
   render() {
+    const { users, isLoading } = this.state
+
     return (
-      <BrowserRouter>
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <UserList {...props} users={this.state.users} onPageChange={this.onPageChange} />
-          )}
-        />
-        <Route
-          exact
-          path="/user/:userId"
-          render={(props) => <UserDetail {...props} users={this.state.users} />}
-        />
-      </BrowserRouter>
+      <>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <BrowserRouter>
+            <Route
+              exact
+              path="/"
+              render={(props) => <UserList {...props} users={users} onPageChange={this.onPageChange} />}
+            />
+            <Route
+              exact
+              path="/user/:userId"
+              render={(props) => <UserDetail {...props} users={users} />}
+            />
+          </BrowserRouter>
+        )}
+      </>
     )
   }
 }

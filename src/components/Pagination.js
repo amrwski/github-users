@@ -13,7 +13,9 @@ const Pagination = ({ onPageChange }) => {
 
   return (
     <div className="pagination">
-      <button onClick={() => onPageChange()}>Load more users...</button>
+      <button className="ui inverted primary button" onClick={() => onPageChange()}>
+        Load more users...
+      </button>
     </div>
   )
 }

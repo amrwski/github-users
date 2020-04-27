@@ -1,5 +1,9 @@
 import axios from "axios"
 
 export default axios.create({
-  baseURL: "https://cors-anywhere.herokuapp.com/https://api.github.com",
+  baseURL: "https://api.github.com",
 })
+
+// let headers = new Headers()
+// headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+// headers.append('Access-Control-Allow-Credentials', 'true');
