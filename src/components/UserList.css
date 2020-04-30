@@ -1,8 +1,5 @@
 body {
   background: url(../assets/jeremy-bishop-G9i_plbfDgk-unsplash.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
 }
 
@@ -28,7 +25,6 @@ body {
 
 .ui.segment {
   min-width: 280px;
-  /* border: 1px solid red; */
 }
 
 .ui.basic.button a {
@@ -40,7 +36,7 @@ body {
 }
 
 .header {
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .pagination {
